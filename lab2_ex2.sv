@@ -2,18 +2,22 @@ module lab2_ex2 (
 	input logic rst, clk,
 	input logic w,
 	output logic out, 
-	output logic [8:0] state
+	output logic [3:0] state
 );
 
-assign state[0] = (state_reg == A);
-assign state[1] = (state_reg == B);
-assign state[2] = (state_reg == C);
-assign state[3] = (state_reg == D);
-assign state[4] = (state_reg == E);
-assign state[5] = (state_reg == F);
-assign state[6] = (state_reg == G);
-assign state[7] = (state_reg == H);
-assign state[8] = (state_reg == I);
+always_comb begin
+	case (state_reg)
+		A : state = 4'b0000;
+		B : state = 4'b0001;
+		C : state = 4'b0010;
+		D : state = 4'b0011;
+		E : state = 4'b0100;
+		F : state = 4'b0101;
+		G : state = 4'b0110;
+		H : state = 4'b0111;
+		I : state = 4'b1000;
+	endcase
+end
 
 typedef enum bit [3:0]	{A = 4'b0000, B = 4'b0001, C = 4'b0010, D = 4'b0011,E = 4'b0100, F = 4'b0101, G = 4'b0110, H = 4'b0111, I = 4'b1000} state_t;
 state_t state_reg, state_next;
